@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mamaair.africa/schemas/mamaair-stream-event-v1.json",
+  "title": "MamaAir synthetic dataset replay event",
+  "description": "A self-contained replay event derived from one preserved daily record. replay_emitted_at is replay transport metadata, not a clinical observation timestamp.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "dataset_id",
+    "track_id",
+    "gestation_week",
+    "day_of_week",
+    "cumulative_pregnancy_day",
+    "source_sequence",
+    "replay_iteration",
+    "replay_emitted_at",
+    "replay_metadata",
+    "trajectory_context",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "event_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "dataset_id": {"const": "mamaair-ssa-climate-maternal-wq1"},
+    "track_id": {"type": "string", "minLength": 1},
+    "gestation_week": {"type": "integer", "minimum": 1, "maximum": 40},
+    "day_of_week": {"type": "integer", "minimum": 1, "maximum": 7},
+    "cumulative_pregnancy_day": {"type": "integer", "minimum": 1},
+    "source_sequence": {"type": "integer", "minimum": 0},
+    "replay_iteration": {"type": "integer", "minimum": 0},
+    "replay_emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC time at which the producer emitted this replay event; not a clinical timestamp."
+    },
+    "replay_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "is_replay", "is_clinical_timestamp"],
+      "properties": {
+        "kind": {"const": "synthetic_dataset_replay"},
+        "is_replay": {"const": true},
+        "is_clinical_timestamp": {"const": false}
+      }
+    },
+    "trajectory_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trajectory_sequence",
+        "trajectory_record_sequence",
+        "starting_gestation_week",
+        "weeks_tracked",
+        "static_profile",
+        "trajectory_overview"
+      ],
+      "properties": {
+        "trajectory_sequence": {"type": "integer", "minimum": 0},
+        "trajectory_record_sequence": {"type": "integer", "minimum": 0},
+        "starting_gestation_week": {"type": "integer", "minimum": 1, "maximum": 40},
+        "weeks_tracked": {"type": "integer", "minimum": 1, "maximum": 40},
+        "static_profile": {"type": "object"},
+        "trajectory_overview": {"type": "object"}
+      }
+    },
+    "payload": {
+      "type": "object",
+      "description": "The original daily-record object, copied without modifying any source value.",
+      "required": ["gestation_week", "day_of_week", "cumulative_pregnancy_day"],
+      "properties": {
+        "gestation_week": {"type": "integer", "minimum": 1, "maximum": 40},
+        "day_of_week": {"type": "integer", "minimum": 1, "maximum": 7},
+        "cumulative_pregnancy_day": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": true
+    }
+  }
+}

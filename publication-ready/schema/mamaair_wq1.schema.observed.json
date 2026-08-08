@@ -1,0 +1,1507 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MamaAir WQ1 observed release schema",
+  "description": "Structural schema inferred from the 75-trajectory JSON release candidate. x-observed-* values are annotations, not medical or generator constraints.",
+  "type": "object",
+  "properties": {
+    "dataset_metadata": {
+      "type": "object",
+      "properties": {
+        "aws_registry_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "climate",
+              "environmental",
+              "health",
+              "life sciences",
+              "machine learning",
+              "sustainability",
+              "synthetic data"
+            ]
+          },
+          "x-observed-min-items": 7,
+          "x-observed-max-items": 7
+        },
+        "compliance": {
+          "type": "object",
+          "properties": {
+            "contains_exact_gps": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            },
+            "contains_facility_identifiers": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            },
+            "contains_phi": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            },
+            "contains_real_patient_data": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            },
+            "synthetic_generation_documented": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "required": [
+            "contains_exact_gps",
+            "contains_facility_identifiers",
+            "contains_phi",
+            "contains_real_patient_data",
+            "synthetic_generation_documented"
+          ],
+          "additionalProperties": false
+        },
+        "contact": {
+          "type": "string",
+          "enum": [
+            "dusmikeev@mamaair.africa"
+          ]
+        },
+        "dataset_id": {
+          "type": "string",
+          "enum": [
+            "mamaair-ssa-climate-maternal-wq1"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "enum": [
+            "Privacy-preserving synthetic maternal health journey dataset modelling pregnancy trajectories in Kenya-first, Sub-Saharan African climate-stressed, resource-limited settings. All records are fully synthetic. No real patient data, PHI, or identifiable information is present."
+          ]
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "JSON"
+          ]
+        },
+        "geographic_context": {
+          "type": "string",
+          "enum": [
+            "Sub-Saharan Africa, Kenya-first, Nairobi informal settlements"
+          ]
+        },
+        "license": {
+          "type": "string",
+          "enum": [
+            "MamaAir Public Data Sample License (Permissive Evaluation & Research Terms)"
+          ]
+        },
+        "managed_by": {
+          "type": "string",
+          "enum": [
+            "MamaAir.Africa"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "enum": [
+            "MamaAir Sub-Saharan Africa Climate-Contextual Maternal Health Dataset \u2014 Kenya-First Synthetic Sample"
+          ]
+        },
+        "persona_archetype": {
+          "type": "string",
+          "enum": [
+            "Amani WQ1 \u2014 Poorest Quintile Urban Informal Settlement"
+          ]
+        },
+        "total_trajectories": {
+          "type": "integer",
+          "x-observed-minimum": 75,
+          "x-observed-maximum": 75
+        },
+        "version": {
+          "type": "string",
+          "enum": [
+            "v1.0"
+          ]
+        }
+      },
+      "required": [
+        "aws_registry_tags",
+        "compliance",
+        "contact",
+        "dataset_id",
+        "description",
+        "format",
+        "geographic_context",
+        "license",
+        "managed_by",
+        "name",
+        "persona_archetype",
+        "total_trajectories",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "trajectories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "daily_records": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "anc_tracking": {
+                  "type": "object",
+                  "properties": {
+                    "anc_attended": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "anc_visit_due": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "skip_reason": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "enum": [
+                        null,
+                        "clinic_stockout",
+                        "felt_unwell",
+                        "long_wait_time",
+                        "lost_wages",
+                        "transport_fare"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "anc_attended",
+                    "anc_visit_due",
+                    "skip_reason"
+                  ],
+                  "additionalProperties": false
+                },
+                "behavioral": {
+                  "type": "object",
+                  "properties": {
+                    "nudge_complied": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "nudge_sent": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    }
+                  },
+                  "required": [
+                    "nudge_complied",
+                    "nudge_sent"
+                  ],
+                  "additionalProperties": false
+                },
+                "clinical_markers": {
+                  "type": "object",
+                  "properties": {
+                    "anemia_proxy_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.31,
+                      "x-observed-maximum": 0.9
+                    },
+                    "bp_alert": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "bp_systolic_mmhg": {
+                      "type": "integer",
+                      "x-observed-minimum": 78,
+                      "x-observed-maximum": 177
+                    },
+                    "cohb_saturation_proxy": {
+                      "type": "number",
+                      "x-observed-minimum": 0.06,
+                      "x-observed-maximum": 0.25
+                    },
+                    "heat_strain_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.0,
+                      "x-observed-maximum": 0.84
+                    },
+                    "uterine_contraction_risk": {
+                      "type": "number",
+                      "x-observed-minimum": 0.13,
+                      "x-observed-maximum": 0.88
+                    },
+                    "uti_risk_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.17,
+                      "x-observed-maximum": 0.95
+                    },
+                    "waterborne_pathogen_risk": {
+                      "type": "number",
+                      "x-observed-minimum": 0.03,
+                      "x-observed-maximum": 0.45
+                    }
+                  },
+                  "required": [
+                    "anemia_proxy_score",
+                    "bp_alert",
+                    "bp_systolic_mmhg",
+                    "cohb_saturation_proxy",
+                    "heat_strain_score",
+                    "uterine_contraction_risk",
+                    "uti_risk_score",
+                    "waterborne_pathogen_risk"
+                  ],
+                  "additionalProperties": false
+                },
+                "cumulative_pregnancy_day": {
+                  "type": "integer",
+                  "x-observed-minimum": 1,
+                  "x-observed-maximum": 280
+                },
+                "day_of_week": {
+                  "type": "integer",
+                  "x-observed-minimum": 1,
+                  "x-observed-maximum": 7
+                },
+                "environmental": {
+                  "type": "object",
+                  "properties": {
+                    "cooking_sessions_today": {
+                      "type": "integer",
+                      "x-observed-minimum": 2,
+                      "x-observed-maximum": 3
+                    },
+                    "flood_event_today": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "heat_index_celsius": {
+                      "type": "number",
+                      "x-observed-minimum": 19.0,
+                      "x-observed-maximum": 38.0
+                    },
+                    "indoor_co_ppm_calculated": {
+                      "type": "number",
+                      "x-observed-minimum": 0.64,
+                      "x-observed-maximum": 45.6
+                    },
+                    "indoor_pm25_calculated_ug_m3": {
+                      "type": "number",
+                      "x-observed-minimum": 34.18,
+                      "x-observed-maximum": 257.92
+                    },
+                    "indoor_temp_peak_celsius": {
+                      "type": "number",
+                      "x-observed-minimum": 23.6,
+                      "x-observed-maximum": 46.62
+                    },
+                    "pm25_ambient_ug_m3": {
+                      "type": "number",
+                      "x-observed-minimum": 20.0,
+                      "x-observed-maximum": 58.5
+                    },
+                    "pm25_peak_ug_m3": {
+                      "type": "number",
+                      "x-observed-minimum": 24.76,
+                      "x-observed-maximum": 232.15
+                    },
+                    "rainy_season": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "relative_humidity_pct": {
+                      "type": "number",
+                      "x-observed-minimum": 45.0,
+                      "x-observed-maximum": 90.0
+                    },
+                    "toxic_intersections_crossed": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 7
+                    },
+                    "uv_index": {
+                      "type": "number",
+                      "x-observed-minimum": 4.0,
+                      "x-observed-maximum": 12.0
+                    }
+                  },
+                  "required": [
+                    "cooking_sessions_today",
+                    "flood_event_today",
+                    "heat_index_celsius",
+                    "indoor_co_ppm_calculated",
+                    "indoor_pm25_calculated_ug_m3",
+                    "indoor_temp_peak_celsius",
+                    "pm25_ambient_ug_m3",
+                    "pm25_peak_ug_m3",
+                    "rainy_season",
+                    "relative_humidity_pct",
+                    "toxic_intersections_crossed",
+                    "uv_index"
+                  ],
+                  "additionalProperties": false
+                },
+                "gestation_week": {
+                  "type": "integer",
+                  "x-observed-minimum": 1,
+                  "x-observed-maximum": 40
+                },
+                "gestational_phase": {
+                  "type": "string",
+                  "enum": [
+                    "fetal_growth_early",
+                    "fetal_growth_late",
+                    "fetal_growth_mid",
+                    "implantation",
+                    "organogenesis",
+                    "pre_term_maturation"
+                  ]
+                },
+                "mpesa_micro_economy": {
+                  "type": "object",
+                  "properties": {
+                    "avg_transaction_kes": {
+                      "type": "number",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 199.99
+                    },
+                    "balance_depleted": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "transactions_today": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 5
+                    }
+                  },
+                  "required": [
+                    "avg_transaction_kes",
+                    "balance_depleted",
+                    "transactions_today"
+                  ],
+                  "additionalProperties": false
+                },
+                "nutrition_hydration": {
+                  "type": "object",
+                  "properties": {
+                    "daily_income_kes": {
+                      "type": "number",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 1200
+                    },
+                    "dehydration_risk_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.21,
+                      "x-observed-maximum": 1
+                    },
+                    "diet_quality_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.05,
+                      "x-observed-maximum": 0.66
+                    },
+                    "financial_stress_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.0,
+                      "x-observed-maximum": 1.0
+                    },
+                    "fluid_intake_ml": {
+                      "type": "number",
+                      "x-observed-minimum": 300.0,
+                      "x-observed-maximum": 1907.74
+                    },
+                    "ifa_adherence_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 0.97
+                    },
+                    "meals_per_day": {
+                      "type": "integer",
+                      "x-observed-minimum": 1,
+                      "x-observed-maximum": 4
+                    },
+                    "nocturnal_fluid_restriction": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    }
+                  },
+                  "required": [
+                    "daily_income_kes",
+                    "dehydration_risk_score",
+                    "diet_quality_score",
+                    "financial_stress_score",
+                    "fluid_intake_ml",
+                    "ifa_adherence_score",
+                    "meals_per_day",
+                    "nocturnal_fluid_restriction"
+                  ],
+                  "additionalProperties": false
+                },
+                "quality_flags": {
+                  "type": "object",
+                  "properties": {
+                    "completeness_index": {
+                      "type": "number",
+                      "x-observed-minimum": 0.75,
+                      "x-observed-maximum": 1.0
+                    },
+                    "missingness_flags": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "mpesa_data_absent",
+                          "no_clinical_exam_today",
+                          "water_carry_estimated"
+                        ]
+                      },
+                      "x-observed-min-items": 0,
+                      "x-observed-max-items": 3
+                    },
+                    "synthetic_confidence": {
+                      "type": "number",
+                      "x-observed-minimum": 0.88,
+                      "x-observed-maximum": 0.99
+                    }
+                  },
+                  "required": [
+                    "completeness_index",
+                    "missingness_flags",
+                    "synthetic_confidence"
+                  ],
+                  "additionalProperties": false
+                },
+                "rules_engine_daily": {
+                  "type": "object",
+                  "properties": {
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "escalate_to_healthdesk",
+                        "flag_hypertension_review",
+                        "routine_monitoring"
+                      ]
+                    },
+                    "acute_risk_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.22,
+                      "x-observed-maximum": 0.74
+                    },
+                    "risk_tier": {
+                      "type": "string",
+                      "enum": [
+                        "HIGH_RISK",
+                        "LOW_RISK",
+                        "MODERATE_RISK"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "action",
+                    "acute_risk_score",
+                    "risk_tier"
+                  ],
+                  "additionalProperties": false
+                },
+                "sleep": {
+                  "type": "object",
+                  "properties": {
+                    "fragmented": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "total_hours": {
+                      "type": "number",
+                      "x-observed-minimum": 3.0,
+                      "x-observed-maximum": 8.5
+                    }
+                  },
+                  "required": [
+                    "fragmented",
+                    "total_hours"
+                  ],
+                  "additionalProperties": false
+                },
+                "trimester": {
+                  "type": "string",
+                  "enum": [
+                    "T1",
+                    "T2",
+                    "T3"
+                  ]
+                },
+                "trimester_label": {
+                  "type": "string",
+                  "enum": [
+                    "First Trimester",
+                    "Second Trimester",
+                    "Third Trimester"
+                  ]
+                },
+                "workload_activity": {
+                  "type": "object",
+                  "properties": {
+                    "active_standing_hours": {
+                      "type": "number",
+                      "x-observed-minimum": 0.64,
+                      "x-observed-maximum": 6.75
+                    },
+                    "commute_km": {
+                      "type": "number",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 10
+                    },
+                    "commute_mode": {
+                      "type": "string",
+                      "enum": [
+                        "boda_boda",
+                        "matatu",
+                        "pedestrian"
+                      ]
+                    },
+                    "ergonomic_stress_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.04,
+                      "x-observed-maximum": 0.84
+                    },
+                    "heavy_physical_load": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "is_workday": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "rest_breaks_available": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "water_carry_kg": {
+                      "type": "number",
+                      "x-observed-minimum": 0.0,
+                      "x-observed-maximum": 20.0
+                    }
+                  },
+                  "required": [
+                    "active_standing_hours",
+                    "commute_km",
+                    "commute_mode",
+                    "ergonomic_stress_score",
+                    "heavy_physical_load",
+                    "is_workday",
+                    "rest_breaks_available",
+                    "water_carry_kg"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "anc_tracking",
+                "behavioral",
+                "clinical_markers",
+                "cumulative_pregnancy_day",
+                "day_of_week",
+                "environmental",
+                "gestation_week",
+                "gestational_phase",
+                "mpesa_micro_economy",
+                "nutrition_hydration",
+                "quality_flags",
+                "rules_engine_daily",
+                "sleep",
+                "trimester",
+                "trimester_label",
+                "workload_activity"
+              ],
+              "additionalProperties": false
+            },
+            "x-observed-min-items": 119,
+            "x-observed-max-items": 280
+          },
+          "pregnancy_summary": {
+            "type": "object",
+            "properties": {
+              "anc_summary": {
+                "type": "object",
+                "properties": {
+                  "anc_attendance_rate": {
+                    "type": "number",
+                    "x-observed-minimum": 0.2,
+                    "x-observed-maximum": 1.0
+                  },
+                  "anc_visits_attended": {
+                    "type": "integer",
+                    "x-observed-minimum": 1,
+                    "x-observed-maximum": 5
+                  },
+                  "anc_visits_due": {
+                    "type": "integer",
+                    "x-observed-minimum": 3,
+                    "x-observed-maximum": 5
+                  },
+                  "linda_mama_engagement": {
+                    "type": "string",
+                    "enum": [
+                      "good",
+                      "partial",
+                      "poor"
+                    ]
+                  }
+                },
+                "required": [
+                  "anc_attendance_rate",
+                  "anc_visits_attended",
+                  "anc_visits_due",
+                  "linda_mama_engagement"
+                ],
+                "additionalProperties": false
+              },
+              "environmental_burden": {
+                "type": "object",
+                "properties": {
+                  "cumulative_exposure_category": {
+                    "type": "string",
+                    "enum": [
+                      "extreme",
+                      "high",
+                      "moderate"
+                    ]
+                  },
+                  "dominant_stressor": {
+                    "type": "string",
+                    "enum": [
+                      "ambient_traffic_pollution",
+                      "indoor_biomass_combustion"
+                    ]
+                  }
+                },
+                "required": [
+                  "cumulative_exposure_category",
+                  "dominant_stressor"
+                ],
+                "additionalProperties": false
+              },
+              "fetal_outcome_indices": {
+                "type": "object",
+                "properties": {
+                  "avg_growth_index": {
+                    "type": "number",
+                    "x-observed-minimum": 0.54,
+                    "x-observed-maximum": 0.67
+                  },
+                  "avg_respiratory_index": {
+                    "type": "number",
+                    "x-observed-minimum": 0.53,
+                    "x-observed-maximum": 0.67
+                  },
+                  "fetal_hypoxia_risk_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.4,
+                    "x-observed-maximum": 0.84
+                  },
+                  "low_birth_weight_risk_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.35,
+                    "x-observed-maximum": 0.71
+                  },
+                  "preterm_birth_risk_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.29,
+                    "x-observed-maximum": 0.89
+                  }
+                },
+                "required": [
+                  "avg_growth_index",
+                  "avg_respiratory_index",
+                  "fetal_hypoxia_risk_score",
+                  "low_birth_weight_risk_score",
+                  "preterm_birth_risk_score"
+                ],
+                "additionalProperties": false
+              },
+              "maternal_health_arc": {
+                "type": "object",
+                "properties": {
+                  "anemia_trajectory": {
+                    "type": "string",
+                    "enum": [
+                      "progressive",
+                      "stable"
+                    ]
+                  },
+                  "avg_anemia_score_pregnancy": {
+                    "type": "number",
+                    "x-observed-minimum": 0.53,
+                    "x-observed-maximum": 0.69
+                  },
+                  "critical_risk_weeks": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "x-observed-minimum": 1,
+                      "x-observed-maximum": 40
+                    },
+                    "x-observed-min-items": 17,
+                    "x-observed-max-items": 40
+                  },
+                  "high_risk_weeks": {
+                    "type": "array",
+                    "items": {},
+                    "x-observed-min-items": 0,
+                    "x-observed-max-items": 0
+                  },
+                  "total_weight_gain_kg": {
+                    "type": "number",
+                    "x-observed-minimum": 4.56,
+                    "x-observed-maximum": 10.88
+                  }
+                },
+                "required": [
+                  "anemia_trajectory",
+                  "avg_anemia_score_pregnancy",
+                  "critical_risk_weeks",
+                  "high_risk_weeks",
+                  "total_weight_gain_kg"
+                ],
+                "additionalProperties": false
+              },
+              "overall_risk_classification": {
+                "type": "object",
+                "properties": {
+                  "avg_risk_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.35,
+                    "x-observed-maximum": 0.61
+                  },
+                  "outcome_tier": {
+                    "type": "string",
+                    "enum": [
+                      "CRITICAL_ADVERSE_OUTCOME_LIKELY",
+                      "HIGH_RISK_INTERVENTION_REQUIRED",
+                      "MODERATE_RISK_CLOSE_MONITORING"
+                    ]
+                  },
+                  "peak_risk_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.4,
+                    "x-observed-maximum": 0.66
+                  },
+                  "recommended_intervention": {
+                    "type": "string",
+                    "enum": [
+                      "enhanced_anc_monitoring",
+                      "immediate_facility_admission",
+                      "priority_anc_plus_home_visit"
+                    ]
+                  }
+                },
+                "required": [
+                  "avg_risk_score",
+                  "outcome_tier",
+                  "peak_risk_score",
+                  "recommended_intervention"
+                ],
+                "additionalProperties": false
+              },
+              "trajectory_overview": {
+                "type": "object",
+                "properties": {
+                  "gestation_weeks_covered": {
+                    "type": "string",
+                    "enum": [
+                      "12\u201340",
+                      "16\u201340",
+                      "1\u201340",
+                      "20\u201340",
+                      "24\u201340",
+                      "8\u201340"
+                    ]
+                  },
+                  "starting_gestation_week": {
+                    "type": "integer",
+                    "x-observed-minimum": 1,
+                    "x-observed-maximum": 24
+                  },
+                  "trajectory_arc": {
+                    "type": "string",
+                    "enum": [
+                      "stable_high",
+                      "stable_moderate"
+                    ]
+                  },
+                  "weeks_tracked": {
+                    "type": "integer",
+                    "x-observed-minimum": 17,
+                    "x-observed-maximum": 40
+                  }
+                },
+                "required": [
+                  "gestation_weeks_covered",
+                  "starting_gestation_week",
+                  "trajectory_arc",
+                  "weeks_tracked"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "anc_summary",
+              "environmental_burden",
+              "fetal_outcome_indices",
+              "maternal_health_arc",
+              "overall_risk_classification",
+              "trajectory_overview"
+            ],
+            "additionalProperties": false
+          },
+          "static_profile": {
+            "type": "object",
+            "properties": {
+              "age": {
+                "type": "integer",
+                "x-observed-minimum": 17,
+                "x-observed-maximum": 38
+              },
+              "employment": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "domestic_worker",
+                      "indoor_office",
+                      "informal_day_labor",
+                      "market_vendor",
+                      "outdoor_agricultural",
+                      "unemployed"
+                    ]
+                  },
+                  "daily_income_kes": {
+                    "type": "integer",
+                    "x-observed-minimum": 0,
+                    "x-observed-maximum": 1200
+                  },
+                  "physical_load_base_hours": {
+                    "type": "number",
+                    "x-observed-minimum": 2.0,
+                    "x-observed-maximum": 7.5
+                  }
+                },
+                "required": [
+                  "category",
+                  "daily_income_kes",
+                  "physical_load_base_hours"
+                ],
+                "additionalProperties": false
+              },
+              "geography": {
+                "type": "object",
+                "properties": {
+                  "climate_zone": {
+                    "type": "string",
+                    "enum": [
+                      "equatorial_highland"
+                    ]
+                  },
+                  "flood_risk_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.35,
+                    "x-observed-maximum": 0.75
+                  },
+                  "nearest_clinic_km": {
+                    "type": "number",
+                    "x-observed-minimum": 1.5,
+                    "x-observed-maximum": 3.5
+                  },
+                  "pm25_baseline_ug_m3": {
+                    "type": "integer",
+                    "x-observed-minimum": 25,
+                    "x-observed-maximum": 45
+                  },
+                  "settlement_name": {
+                    "type": "string",
+                    "enum": [
+                      "Githurai",
+                      "Kawangware",
+                      "Kibera",
+                      "Korogocho",
+                      "Mathare",
+                      "Mukuru"
+                    ]
+                  }
+                },
+                "required": [
+                  "climate_zone",
+                  "flood_risk_score",
+                  "nearest_clinic_km",
+                  "pm25_baseline_ug_m3",
+                  "settlement_name"
+                ],
+                "additionalProperties": false
+              },
+              "gravida": {
+                "type": "integer",
+                "x-observed-minimum": 1,
+                "x-observed-maximum": 4
+              },
+              "household": {
+                "type": "object",
+                "properties": {
+                  "co_risk_level": {
+                    "type": "string",
+                    "enum": [
+                      "critical",
+                      "high",
+                      "low",
+                      "moderate",
+                      "negligible"
+                    ]
+                  },
+                  "cooking_fuel": {
+                    "type": "string",
+                    "enum": [
+                      "LPG",
+                      "charcoal_jiko",
+                      "electric_hotplate",
+                      "kerosene_stove",
+                      "wood_fire"
+                    ]
+                  },
+                  "indoor_pollution_multiplier": {
+                    "type": "number",
+                    "x-observed-minimum": 0.1,
+                    "x-observed-maximum": 2.0
+                  },
+                  "settlement": {
+                    "type": "string",
+                    "enum": [
+                      "Githurai",
+                      "Kawangware",
+                      "Kibera",
+                      "Korogocho",
+                      "Mathare",
+                      "Mukuru"
+                    ]
+                  },
+                  "structure_type": {
+                    "type": "string",
+                    "enum": [
+                      "corrugated_iron_shanty"
+                    ]
+                  },
+                  "toilet_access": {
+                    "type": "string",
+                    "enum": [
+                      "communal_pit_latrine",
+                      "private_flush",
+                      "shared_flush"
+                    ]
+                  },
+                  "ventilation_efficiency": {
+                    "type": "number",
+                    "x-observed-minimum": 0.05,
+                    "x-observed-maximum": 0.9
+                  },
+                  "ventilation_type": {
+                    "type": "string",
+                    "enum": [
+                      "cross_ventilation",
+                      "mechanical",
+                      "none",
+                      "single_window"
+                    ]
+                  },
+                  "water_access_score": {
+                    "type": "number",
+                    "x-observed-minimum": 0.3,
+                    "x-observed-maximum": 0.65
+                  },
+                  "water_source": {
+                    "type": "string",
+                    "enum": [
+                      "communal_tap",
+                      "piped_indoor",
+                      "river_stream",
+                      "water_vendor_jerricans"
+                    ]
+                  }
+                },
+                "required": [
+                  "co_risk_level",
+                  "cooking_fuel",
+                  "indoor_pollution_multiplier",
+                  "settlement",
+                  "structure_type",
+                  "toilet_access",
+                  "ventilation_efficiency",
+                  "ventilation_type",
+                  "water_access_score",
+                  "water_source"
+                ],
+                "additionalProperties": false
+              },
+              "literacy_level": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "primary",
+                  "secondary",
+                  "tertiary"
+                ]
+              },
+              "mpesa_access": {
+                "type": "boolean",
+                "enum": [
+                  false,
+                  true
+                ]
+              },
+              "pre_pregnancy_bmi": {
+                "type": "number",
+                "x-observed-minimum": 16.0,
+                "x-observed-maximum": 27.1
+              },
+              "race": {
+                "type": "string",
+                "enum": [
+                  "Kalenjin",
+                  "Kamba",
+                  "Kikuyu",
+                  "Kisii",
+                  "Luhya",
+                  "Luo",
+                  "Meru",
+                  "Other_Kenyan"
+                ]
+              },
+              "ses_composite_score": {
+                "type": "number",
+                "x-observed-minimum": 0.09,
+                "x-observed-maximum": 0.86
+              }
+            },
+            "required": [
+              "age",
+              "employment",
+              "geography",
+              "gravida",
+              "household",
+              "literacy_level",
+              "mpesa_access",
+              "pre_pregnancy_bmi",
+              "race",
+              "ses_composite_score"
+            ],
+            "additionalProperties": false
+          },
+          "track_id": {
+            "type": "string"
+          },
+          "weekly_summaries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "anc_linda_mama": {
+                  "type": "object",
+                  "properties": {
+                    "anc_dropout_risk_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.07,
+                      "x-observed-maximum": 0.62
+                    },
+                    "anc_visit_due_this_week": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "anc_visits_attended": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 1
+                    }
+                  },
+                  "required": [
+                    "anc_dropout_risk_score",
+                    "anc_visit_due_this_week",
+                    "anc_visits_attended"
+                  ],
+                  "additionalProperties": false
+                },
+                "behavioral_summary": {
+                  "type": "object",
+                  "properties": {
+                    "avg_uti_risk": {
+                      "type": "number",
+                      "x-observed-minimum": 0.25,
+                      "x-observed-maximum": 0.9
+                    },
+                    "nudge_compliance_days": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 7
+                    }
+                  },
+                  "required": [
+                    "avg_uti_risk",
+                    "nudge_compliance_days"
+                  ],
+                  "additionalProperties": false
+                },
+                "environmental_summary": {
+                  "type": "object",
+                  "properties": {
+                    "avg_heat_strain": {
+                      "type": "number",
+                      "x-observed-minimum": 0.21,
+                      "x-observed-maximum": 0.65
+                    },
+                    "avg_pm25_peak_ug_m3": {
+                      "type": "number",
+                      "x-observed-minimum": 60.41,
+                      "x-observed-maximum": 164.83
+                    },
+                    "cumulative_env_payload_score": {
+                      "type": "number",
+                      "x-observed-minimum": 2.82,
+                      "x-observed-maximum": 7.69
+                    },
+                    "flood_events_this_week": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 4
+                    }
+                  },
+                  "required": [
+                    "avg_heat_strain",
+                    "avg_pm25_peak_ug_m3",
+                    "cumulative_env_payload_score",
+                    "flood_events_this_week"
+                  ],
+                  "additionalProperties": false
+                },
+                "fetal_development_indices": {
+                  "type": "object",
+                  "properties": {
+                    "automatic_downgrade_triggered": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "cns_development_index": {
+                      "type": "number",
+                      "x-observed-minimum": 0.44,
+                      "x-observed-maximum": 0.66
+                    },
+                    "growth_index": {
+                      "type": "number",
+                      "x-observed-minimum": 0.47,
+                      "x-observed-maximum": 0.74
+                    },
+                    "respiratory_system_index": {
+                      "type": "number",
+                      "x-observed-minimum": 0.47,
+                      "x-observed-maximum": 0.71
+                    }
+                  },
+                  "required": [
+                    "automatic_downgrade_triggered",
+                    "cns_development_index",
+                    "growth_index",
+                    "respiratory_system_index"
+                  ],
+                  "additionalProperties": false
+                },
+                "gestation_week": {
+                  "type": "integer",
+                  "x-observed-minimum": 1,
+                  "x-observed-maximum": 40
+                },
+                "gestational_phase": {
+                  "type": "string",
+                  "enum": [
+                    "fetal_growth_early",
+                    "fetal_growth_late",
+                    "fetal_growth_mid",
+                    "implantation",
+                    "organogenesis",
+                    "pre_term_maturation"
+                  ]
+                },
+                "maternal_health_summary": {
+                  "type": "object",
+                  "properties": {
+                    "anemia_trend": {
+                      "type": "string",
+                      "enum": [
+                        "improving",
+                        "stable",
+                        "worsening"
+                      ]
+                    },
+                    "avg_anemia_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.43,
+                      "x-observed-maximum": 0.8
+                    },
+                    "avg_sleep_hours": {
+                      "type": "number",
+                      "x-observed-minimum": 4.51,
+                      "x-observed-maximum": 6.78
+                    },
+                    "bp_alert_days": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 6
+                    },
+                    "conjunctival_pallor_detected": {
+                      "type": "boolean",
+                      "enum": [
+                        false,
+                        true
+                      ]
+                    },
+                    "pallor_severity": {
+                      "type": "string",
+                      "enum": [
+                        "mild",
+                        "moderate",
+                        "severe"
+                      ]
+                    },
+                    "weight_gain_kg_this_week": {
+                      "type": "number",
+                      "x-observed-minimum": -0.17,
+                      "x-observed-maximum": 0.63
+                    },
+                    "weight_gain_status": {
+                      "type": "string",
+                      "enum": [
+                        "critical_flatline",
+                        "excess",
+                        "insufficient",
+                        "normal"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "anemia_trend",
+                    "avg_anemia_score",
+                    "avg_sleep_hours",
+                    "bp_alert_days",
+                    "conjunctival_pallor_detected",
+                    "pallor_severity",
+                    "weight_gain_kg_this_week",
+                    "weight_gain_status"
+                  ],
+                  "additionalProperties": false
+                },
+                "nutrition_hydration_summary": {
+                  "type": "object",
+                  "properties": {
+                    "avg_diet_quality": {
+                      "type": "number",
+                      "x-observed-minimum": 0.08,
+                      "x-observed-maximum": 0.42
+                    },
+                    "avg_fluid_intake_ml": {
+                      "type": "number",
+                      "x-observed-minimum": 633.77,
+                      "x-observed-maximum": 1504.34
+                    },
+                    "avg_ifa_adherence": {
+                      "type": "number",
+                      "x-observed-minimum": 0.16,
+                      "x-observed-maximum": 0.77
+                    },
+                    "ifa_status": {
+                      "type": "string",
+                      "enum": [
+                        "compliant",
+                        "non_compliant"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "avg_diet_quality",
+                    "avg_fluid_intake_ml",
+                    "avg_ifa_adherence",
+                    "ifa_status"
+                  ],
+                  "additionalProperties": false
+                },
+                "risk_analytics": {
+                  "type": "object",
+                  "properties": {
+                    "avg_daily_risk_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.3,
+                      "x-observed-maximum": 0.66
+                    },
+                    "cumulative_risk_score": {
+                      "type": "integer",
+                      "x-observed-minimum": 1,
+                      "x-observed-maximum": 1
+                    },
+                    "delta_from_prior_week": {
+                      "type": "object",
+                      "properties": {
+                        "anemia": {
+                          "type": "number",
+                          "x-observed-minimum": -0.14,
+                          "x-observed-maximum": 0.12
+                        },
+                        "risk_score": {
+                          "type": "number",
+                          "x-observed-minimum": -0.09,
+                          "x-observed-maximum": 0.08
+                        }
+                      },
+                      "required": [
+                        "anemia",
+                        "risk_score"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "pprom_risk_score": {
+                      "type": "number",
+                      "x-observed-minimum": 0.31,
+                      "x-observed-maximum": 0.81
+                    },
+                    "red_flag_days_this_week": {
+                      "type": "integer",
+                      "x-observed-minimum": 0,
+                      "x-observed-maximum": 0
+                    },
+                    "rules_engine_action": {
+                      "type": "string",
+                      "enum": [
+                        "emergency_nurse_escalation"
+                      ]
+                    },
+                    "weekly_risk_tier": {
+                      "type": "string",
+                      "enum": [
+                        "CRITICAL"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "avg_daily_risk_score",
+                    "cumulative_risk_score",
+                    "delta_from_prior_week",
+                    "pprom_risk_score",
+                    "red_flag_days_this_week",
+                    "rules_engine_action",
+                    "weekly_risk_tier"
+                  ],
+                  "additionalProperties": false
+                },
+                "trimester": {
+                  "type": "string",
+                  "enum": [
+                    "T1",
+                    "T2",
+                    "T3"
+                  ]
+                },
+                "week_number": {
+                  "type": "integer",
+                  "x-observed-minimum": 1,
+                  "x-observed-maximum": 40
+                }
+              },
+              "required": [
+                "anc_linda_mama",
+                "behavioral_summary",
+                "environmental_summary",
+                "fetal_development_indices",
+                "gestation_week",
+                "gestational_phase",
+                "maternal_health_summary",
+                "nutrition_hydration_summary",
+                "risk_analytics",
+                "trimester",
+                "week_number"
+              ],
+              "additionalProperties": false
+            },
+            "x-observed-min-items": 17,
+            "x-observed-max-items": 40
+          }
+        },
+        "required": [
+          "daily_records",
+          "pregnancy_summary",
+          "static_profile",
+          "track_id",
+          "weekly_summaries"
+        ],
+        "additionalProperties": false
+      },
+      "x-observed-min-items": 75,
+      "x-observed-max-items": 75
+    }
+  },
+  "required": [
+    "dataset_metadata",
+    "trajectories"
+  ],
+  "additionalProperties": false
+}

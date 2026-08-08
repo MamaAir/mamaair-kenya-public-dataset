@@ -1,0 +1,57 @@
+# macOS metadata
+.DS_Store
+__MACOSX/
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials
+*.credentials
+.aws/
+.local/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.plan
+terraform.tfvars
+terraform.tfvars.bak
+!terraform.tfvars.example
+.terraform.tfstate.lock.info
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Deterministic generated output
+build/
+
+# INTERNAL - DO NOT PUBLISH (source materials, audits, Andrei originals)
+internal/
+
+# Local checkpoint files
+.local/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

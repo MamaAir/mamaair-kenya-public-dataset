@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars only in an authorized deployment workspace.
+# Replace every placeholder with an explicitly approved real value.
+aws_region                   = "REPLACE_WITH_AUTHORIZED_AWS_REGION"
+bucket_name                  = "REPLACE_WITH_GLOBALLY_UNIQUE_BUCKET_NAME"
+dataset_version              = "v1"
+kinesis_stream_name          = "REPLACE_WITH_APPROVED_STREAM_NAME"
+expected_aws_account_id      = "REPLACE_WITH_AUTHORIZED_12_DIGIT_ACCOUNT_ID"
+public_dataset_access_enabled = false
