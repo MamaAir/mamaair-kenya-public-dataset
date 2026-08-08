@@ -1,3 +1,5 @@
+![MamaAir](assets/MamaAir.png)
+
 MamaAir Climate-Contextual Maternal Health Dataset. Readme
 This dataset provides high-fidelity, privacy-preserving synthetic JSON trajectories tracking 40-week maternal health journeys across climate-stressed Sub-Saharan Africa. This data pack was synthesized based on 100+ histories of pregnancy in the region of Big Nairobi (Kenya). It correlates daily physiological indicators with hourly climate and air quality anomalies (Gases, PM2.5, weather indices).
 Optimized for fine-tuning, validating, and mitigating bioclimatic biases in medical LLMs and healthcare AI applications.
