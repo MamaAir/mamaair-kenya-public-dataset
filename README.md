@@ -6,9 +6,9 @@ Optimized for fine-tuning, validating, and mitigating bioclimatic biases in medi
 
 ## Official Links
 
-- [MamaAir AWS public dataset (v1)](http://mamaair-kenya-public-dataset.s3-website-eu-west-1.amazonaws.com/releases/v1/)
-- [MamaAir application on GitHub](https://github.com/AirborneDiseaseRisksInstitute/mamaair)
-- [MamaAir website](https://mamaair.africa)
+- <a href="http://mamaair-kenya-public-dataset.s3-website-eu-west-1.amazonaws.com/releases/v1/" target="_blank" rel="noopener noreferrer">MamaAir AWS public dataset (v1)</a>
+- <a href="https://github.com/AirborneDiseaseRisksInstitute/mamaair" target="_blank" rel="noopener noreferrer">MamaAir application on GitHub</a>
+- <a href="https://mamaair.africa" target="_blank" rel="noopener noreferrer">MamaAir website</a>
  
 Architecture (Data Mining & Processing Pipeline)
 The end-to-end data mining pipeline transforms decentralized log events into structured longitudinal streams:
